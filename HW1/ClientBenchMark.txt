@@ -1,0 +1,2 @@
+Number Buffer: 15
+Buffer size: 100

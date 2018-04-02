@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/thuan/CSS-432/HW1/Client.cpp
+iostream
+-
+netdb.h
+-
+cstring
+-
+sys/time.h
+-
+unistd.h
+-
+
+/home/thuan/CSS-432/HW1/Server.cpp
+iostream
+-
+sys/socket.h
+-
+netdb.h
+-
+cstring
+-
+unistd.h
+-
+sys/time.h
+-
+
