@@ -1,6 +1,9 @@
-//
-// Created by thuan on 30/03/18.
-//
+/**
+ * @author Thuan Tran
+ * HW1: Intro to network programming
+ * This is a server class that will receive the data from the client and count how many time it need to read. Then
+ * return the number of read back to the client
+ */
 using namespace std;
 
 #include <iostream>
@@ -10,7 +13,6 @@ using namespace std;
 #include <unistd.h>
 #include <sys/time.h>
 #include <pthread.h>
-#include <fstream>
 
 const int CONNECTION_REQUEST_SIZE = 10;
 const int BUFFSIZE = 1500;
@@ -18,7 +20,7 @@ const string THREAD_MESSAGE = "Creating new thread with count: ";
 
 int port;
 int repetition;
-ofstream myfile;
+
 // Used to pass data to the thread
 struct thread_data
 {
@@ -89,11 +91,10 @@ void *benchMark(void *threadData)
     gettimeofday(&stop , nullptr);
     long totalTime = (stop.tv_sec - start.tv_sec) * 1000000 + (stop.tv_usec - start.tv_usec);
     write(data->clientFileDescriptor , &count , sizeof(count));
-    //cout << "Data-receiving time for thread " + to_string(data->thread_id) + " = " + to_string(totalTime) + " usec"
-     //    << endl;
-   // cout << "Finish with thread " + to_string(data->thread_id) << endl;
+    cout << "Data-receiving time for thread " + to_string(data->thread_id) + " = " + to_string(totalTime) + " usec"
+         << endl;
+    cout << "Finish with thread " + to_string(data->thread_id) << endl;
     // finish with this client. close it
-    myfile << to_string(totalTime) <<endl;
     close(data->clientFileDescriptor);
 }
 
@@ -118,7 +119,6 @@ int main(int argumentNumber , char *argumentValues[])
         cout << "Invalid argument supplied. Please enter argument values";
         return -1;
     }
-    myfile.open("ServerBenchMark.txt");
     struct addrinfo hints; // define how the server will be configure
     struct addrinfo *serverInfo; // used to store all the connections that the server can use
     memset(&hints , 0 , sizeof(hints));
@@ -183,7 +183,8 @@ int main(int argumentNumber , char *argumentValues[])
         struct thread_data data;
         data.thread_id = count;
         data.clientFileDescriptor = clientFileDescriptor;
-        cout << THREAD_MESSAGE + to_string(count);
+        cout << THREAD_MESSAGE + to_string(count) << endl;
+        // Spawn a thread to do the work
         int threadResult = pthread_create(&new_thread , nullptr , benchMark , (void *) &data);
         if ( threadResult != 0 )
         {

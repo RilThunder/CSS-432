@@ -84,18 +84,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/thuan/CSS-432/HW1/Client.cpp">
-			<Option target="HW1"/>
-		</Unit>
-		<Unit filename="/home/thuan/CSS-432/HW1/ClientBenchMark.cpp">
-			<Option target="HW1"/>
-		</Unit>
-		<Unit filename="/home/thuan/CSS-432/HW1/Server.cpp">
-			<Option target="HW1"/>
-		</Unit>
-		<Unit filename="/home/thuan/CSS-432/HW1/ServerBenchMark.cpp">
-			<Option target="HW1"/>
-		</Unit>
 		<Unit filename="/home/thuan/CSS-432/HW1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

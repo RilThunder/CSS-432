@@ -1,6 +1,9 @@
-//
-// Created by thuan on 30/03/18.
-//
+/**
+ * @author Thuan Tran
+ * HW1: Intro to network programming
+ * This is a server class that will receive the data from the client and count how many time it need to read. Then
+ * return the number of read back to the client
+ */
 using namespace std;
 
 #include <iostream>
@@ -180,7 +183,8 @@ int main(int argumentNumber , char *argumentValues[])
         struct thread_data data;
         data.thread_id = count;
         data.clientFileDescriptor = clientFileDescriptor;
-        cout << THREAD_MESSAGE + to_string(count);
+        cout << THREAD_MESSAGE + to_string(count) << endl;
+        // Spawn a thread to do the work
         int threadResult = pthread_create(&new_thread , nullptr , benchMark , (void *) &data);
         if ( threadResult != 0 )
         {

@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.17/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/bin/cmake/bin/cmake -E remove -f
+RM = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.17/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/thuan/CSS-432/HW1/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.17/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.17/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -123,114 +123,6 @@ HW1/fast:
 	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/build
 .PHONY : HW1/fast
 
-Client.o: Client.cpp.o
-
-.PHONY : Client.o
-
-# target to build an object file
-Client.cpp.o:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/Client.cpp.o
-.PHONY : Client.cpp.o
-
-Client.i: Client.cpp.i
-
-.PHONY : Client.i
-
-# target to preprocess a source file
-Client.cpp.i:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/Client.cpp.i
-.PHONY : Client.cpp.i
-
-Client.s: Client.cpp.s
-
-.PHONY : Client.s
-
-# target to generate assembly for a file
-Client.cpp.s:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/Client.cpp.s
-.PHONY : Client.cpp.s
-
-ClientBenchMark.o: ClientBenchMark.cpp.o
-
-.PHONY : ClientBenchMark.o
-
-# target to build an object file
-ClientBenchMark.cpp.o:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/ClientBenchMark.cpp.o
-.PHONY : ClientBenchMark.cpp.o
-
-ClientBenchMark.i: ClientBenchMark.cpp.i
-
-.PHONY : ClientBenchMark.i
-
-# target to preprocess a source file
-ClientBenchMark.cpp.i:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/ClientBenchMark.cpp.i
-.PHONY : ClientBenchMark.cpp.i
-
-ClientBenchMark.s: ClientBenchMark.cpp.s
-
-.PHONY : ClientBenchMark.s
-
-# target to generate assembly for a file
-ClientBenchMark.cpp.s:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/ClientBenchMark.cpp.s
-.PHONY : ClientBenchMark.cpp.s
-
-Server.o: Server.cpp.o
-
-.PHONY : Server.o
-
-# target to build an object file
-Server.cpp.o:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/Server.cpp.o
-.PHONY : Server.cpp.o
-
-Server.i: Server.cpp.i
-
-.PHONY : Server.i
-
-# target to preprocess a source file
-Server.cpp.i:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/Server.cpp.i
-.PHONY : Server.cpp.i
-
-Server.s: Server.cpp.s
-
-.PHONY : Server.s
-
-# target to generate assembly for a file
-Server.cpp.s:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/Server.cpp.s
-.PHONY : Server.cpp.s
-
-ServerBenchMark.o: ServerBenchMark.cpp.o
-
-.PHONY : ServerBenchMark.o
-
-# target to build an object file
-ServerBenchMark.cpp.o:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/ServerBenchMark.cpp.o
-.PHONY : ServerBenchMark.cpp.o
-
-ServerBenchMark.i: ServerBenchMark.cpp.i
-
-.PHONY : ServerBenchMark.i
-
-# target to preprocess a source file
-ServerBenchMark.cpp.i:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/ServerBenchMark.cpp.i
-.PHONY : ServerBenchMark.cpp.i
-
-ServerBenchMark.s: ServerBenchMark.cpp.s
-
-.PHONY : ServerBenchMark.s
-
-# target to generate assembly for a file
-ServerBenchMark.cpp.s:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/ServerBenchMark.cpp.s
-.PHONY : ServerBenchMark.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -240,18 +132,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... HW1"
-	@echo "... Client.o"
-	@echo "... Client.i"
-	@echo "... Client.s"
-	@echo "... ClientBenchMark.o"
-	@echo "... ClientBenchMark.i"
-	@echo "... ClientBenchMark.s"
-	@echo "... Server.o"
-	@echo "... Server.i"
-	@echo "... Server.s"
-	@echo "... ServerBenchMark.o"
-	@echo "... ServerBenchMark.i"
-	@echo "... ServerBenchMark.s"
 .PHONY : help
 
 

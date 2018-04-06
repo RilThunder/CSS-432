@@ -44,12 +44,14 @@ int checkValidInput(char *argumentValues[])
         bufferSize = stoi(argumentValues[ 4 ]);
         type = stoi(argumentValues[ 6 ]);
     }
-    catch (invalid_argument &exception) {
+    catch ( invalid_argument &exception )
+    {
         cout << "Incorrect data was entered. Should enter valid integer only";
         cout << exception.what();
         return -1;
     }
-    catch (out_of_range &exception) {
+    catch ( out_of_range &exception )
+    {
         cout << "Incorrect range of data was entered. Should only entere within the range of integer";
         cout << exception.what();
         return -1;
@@ -98,9 +100,9 @@ void printResult(struct timeval start , struct timeval lap , struct timeval end 
 {
     // Second to microsecond needs to multiply by 1000000
     long dataSendingTime = (lap.tv_sec - start.tv_sec) * 1000000 + lap.tv_usec - start.tv_usec;
-    long roundTripTime = (end.tv_sec - start.tv_sec) * 1000000 + lap.tv_usec - start.tv_usec;
+    long roundTripTime = (end.tv_sec - start.tv_sec) * 1000000 + end.tv_usec - start.tv_usec;
     // write the data to text file
-    myfile << to_string(dataSendingTime) + " " + to_string(roundTripTime) + " " << to_string(numberOfRead);
+    myfile << to_string(dataSendingTime) + " " + to_string(roundTripTime) + " " << to_string(numberOfRead) << endl;
     return;
 }
 
@@ -158,7 +160,7 @@ int Fakemain(int argumentNumber , char *argumentValues[])
             cout << "Invalid one socket connection result detected. Looking for next one";
             continue;
         }
-        cout << "Found a connection. Breaking out";
+        cout << "Found a connection. Breaking out" << endl;
         break;
     }
     // If still null, then it means that we went through all possible connections but none satisfied
@@ -174,13 +176,15 @@ int Fakemain(int argumentNumber , char *argumentValues[])
     gettimeofday(&start , NULL);
     for ( int i = 0; i <= repetition; i++ )
     {
-        if (type == 1) {
+        if ( type == 1 )
+        {
             for ( int j = 0; j < numberBuffer; j++ )
             {
                 write(socketFileDescriptor , databuf[ j ] , bufferSize);    // sd: socket descriptor
             }
         }
-        if (type == WRITEV) {
+        if ( type == WRITEV )
+        {
             struct iovec vector[numberBuffer];
             for ( int j = 0; j < numberBuffer; j++ )
             {
@@ -189,56 +193,61 @@ int Fakemain(int argumentNumber , char *argumentValues[])
             }
             writev(socketFileDescriptor , vector , numberBuffer);           // sd: socket descriptor
         }
-        if (type == SINGLE_WRITE)
+        if ( type == SINGLE_WRITE )
         {
             write(socketFileDescriptor , databuf , numberBuffer * bufferSize); // sd: socket descriptor
         }
     }
-    gettimeofday(&lap, nullptr);
+    gettimeofday(&lap , nullptr);
     int numberOfRead;
     read(socketFileDescriptor , &numberOfRead , sizeof(numberOfRead));
     gettimeofday(&end , nullptr);
     printResult(start , lap , end , numberOfRead);
     return 0;
 }
+
 /**
  * Take in port number and server ip name
  * @param argumentNumber
  * @param argumentValues
  * @return
  */
-int main(int argumentNumber, char *argumentValues[]) {
+int main(int argumentNumber , char *argumentValues[])
+{
     argumentNumber = 7;
     char *data[7];
-    data[1] = argumentValues[1]; //set the port number
-    data[5] = argumentValues[2]; //set the server ip name
-    data[2] = argumentValues[3];
-    data[0] = argumentValues[0];
+    data[ 1 ] = argumentValues[ 1 ]; //set the port number
+    data[ 5 ] = argumentValues[ 2 ]; //set the server ip name
+    data[ 2 ] = argumentValues[ 3 ]; // set the repetition
+    data[ 0 ] = argumentValues[ 0 ];
     myfile.open("ClientBenchMark.txt");
-    for (int i=15; i<=60;i=i*2) {
+    for ( int i = 15; i <= 60; i = i * 2 )
+    {
         myfile << "Number Buffer: " + to_string(i) << endl;
-        myfile << "Buffer size: " + to_string(1500/i) << endl;
-        for (int transferType =1; transferType <=3; transferType++) {
+        myfile << "Buffer size: " + to_string(1500 / i) << endl;
+        for ( int transferType = 1; transferType <= 3; transferType++ )
+        {
+            myfile << "Type: " + to_string(transferType) <<endl;
             string Buffer = to_string(i);
-            string size = to_string(1500/i);
+            string size = to_string(1500 / i);
             string operationType = to_string(transferType);
-            char *numBuffer = new char[Buffer.length()+1];
-            char *buffSize = new char[size.length()+1];
-            char *type = new char[operationType.length()+1];
-            strcpy(numBuffer,Buffer.c_str());
-            strcpy(buffSize,size.c_str());
-            strcpy(type,operationType.c_str());
-            data[3] = numBuffer;
-            data[4] = buffSize;
-            data[6] = type;
+            char *numBuffer = new char[Buffer.length() + 1];
+            char *buffSize = new char[size.length() + 1];
+            char *type = new char[operationType.length() + 1];
+            strcpy(numBuffer , Buffer.c_str());
+            strcpy(buffSize , size.c_str());
+            strcpy(type , operationType.c_str());
+            data[ 3 ] = numBuffer;
+            data[ 4 ] = buffSize;
+            data[ 6 ] = type;
             // repeat the experiement for same number buffer, buffer size and type 5 types
-            for (int k = 0 ; k<5; k++)
+            for ( int k = 0; k < 5; k++ )
             {
                 Fakemain(argumentNumber , data);
             }
-            delete [] numBuffer;
-            delete [] buffSize;
-            delete [] type;
+            delete[] numBuffer;
+            delete[] buffSize;
+            delete[] type;
         }
     }
     myfile.close();
