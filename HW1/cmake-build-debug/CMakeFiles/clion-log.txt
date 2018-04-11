@@ -1,4 +1,4 @@
-/home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.17/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/thuan/CSS-432/HW1
+/home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/thuan/CSS-432/HW1
 -- Configuring done
 CMake Error at CMakeLists.txt:6 (add_executable):
   Cannot find source file:

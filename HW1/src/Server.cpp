@@ -87,7 +87,9 @@ void *benchMark(void *threadData)
         for ( int numberRead = 0;
               (numberRead += read(data->clientFileDescriptor , databuf , BUFFSIZE - numberRead)) < BUFFSIZE;
               ++count );
+        count++;
     }
+
     gettimeofday(&stop , nullptr);
     long totalTime = (stop.tv_sec - start.tv_sec) * 1000000 + (stop.tv_usec - start.tv_usec);
     write(data->clientFileDescriptor , &count , sizeof(count));
