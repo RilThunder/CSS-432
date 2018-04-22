@@ -11,19 +11,7 @@
 #include <unistd.h>
 
 using namespace std;
-
-const int TOTAL_SIZE = 1500;
-const int MULTIPLE_WRITE = 1;
-const int WRITEV = 2;
-const int SINGLE_WRITE = 3;
-
-int port;
-int repetition;
-int numberBuffer;
-int bufferSize;
-char *serverIPName;
-int type;
-
+c++
 /**
  * This function is used to check for valid input from the command line arguments
  * Valid port should be between 1024 and 65535

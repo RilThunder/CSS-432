@@ -48,10 +48,10 @@ RM = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.84/bin/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/thuan/CSS-432/HW1
+CMAKE_SOURCE_DIR = /home/thuan/CSS-432/HW2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/thuan/CSS-432/HW1/cmake-build-debug
+CMAKE_BINARY_DIR = /home/thuan/CSS-432/HW2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/thuan/CSS-432/HW1/cmake-build-debug/CMakeFiles /home/thuan/CSS-432/HW1/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles /home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/thuan/CSS-432/HW1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,71 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named HW1
+# Target rules for targets named HW2
 
 # Build rule for target.
-HW1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 HW1
-.PHONY : HW1
+HW2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 HW2
+.PHONY : HW2
 
 # fast build rule for target.
-HW1/fast:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/build
-.PHONY : HW1/fast
+HW2/fast:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/build
+.PHONY : HW2/fast
+
+Retriever.o: Retriever.cpp.o
+
+.PHONY : Retriever.o
+
+# target to build an object file
+Retriever.cpp.o:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/Retriever.cpp.o
+.PHONY : Retriever.cpp.o
+
+Retriever.i: Retriever.cpp.i
+
+.PHONY : Retriever.i
+
+# target to preprocess a source file
+Retriever.cpp.i:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/Retriever.cpp.i
+.PHONY : Retriever.cpp.i
+
+Retriever.s: Retriever.cpp.s
+
+.PHONY : Retriever.s
+
+# target to generate assembly for a file
+Retriever.cpp.s:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/Retriever.cpp.s
+.PHONY : Retriever.cpp.s
+
+Server.o: Server.cpp.o
+
+.PHONY : Server.o
+
+# target to build an object file
+Server.cpp.o:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/Server.cpp.o
+.PHONY : Server.cpp.o
+
+Server.i: Server.cpp.i
+
+.PHONY : Server.i
+
+# target to preprocess a source file
+Server.cpp.i:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/Server.cpp.i
+.PHONY : Server.cpp.i
+
+Server.s: Server.cpp.s
+
+.PHONY : Server.s
+
+# target to generate assembly for a file
+Server.cpp.s:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/Server.cpp.s
+.PHONY : Server.cpp.s
 
 # Help Target
 help:
@@ -131,7 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... HW1"
+	@echo "... HW2"
+	@echo "... Retriever.o"
+	@echo "... Retriever.i"
+	@echo "... Retriever.s"
+	@echo "... Server.o"
+	@echo "... Server.i"
+	@echo "... Server.s"
 .PHONY : help
 
 

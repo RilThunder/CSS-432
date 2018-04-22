@@ -54,45 +54,45 @@ RM = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.84/bin/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/thuan/CSS-432/HW1
+CMAKE_SOURCE_DIR = /home/thuan/CSS-432/HW2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/thuan/CSS-432/HW1/cmake-build-debug
+CMAKE_BINARY_DIR = /home/thuan/CSS-432/HW2/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/HW1.dir
+# Target rules for target CMakeFiles/HW2.dir
 
 # All Build rule for target.
-CMakeFiles/HW1.dir/all:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/depend
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/thuan/CSS-432/HW1/cmake-build-debug/CMakeFiles --progress-num= "Built target HW1"
-.PHONY : CMakeFiles/HW1.dir/all
+CMakeFiles/HW2.dir/all:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/depend
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target HW2"
+.PHONY : CMakeFiles/HW2.dir/all
 
 # Include target in all.
-all: CMakeFiles/HW1.dir/all
+all: CMakeFiles/HW2.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/HW1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/thuan/CSS-432/HW1/cmake-build-debug/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/HW1.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/thuan/CSS-432/HW1/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/HW1.dir/rule
+CMakeFiles/HW2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/HW2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/HW2.dir/rule
 
 # Convenience name for target.
-HW1: CMakeFiles/HW1.dir/rule
+HW2: CMakeFiles/HW2.dir/rule
 
-.PHONY : HW1
-
-# clean rule for target.
-CMakeFiles/HW1.dir/clean:
-	$(MAKE) -f CMakeFiles/HW1.dir/build.make CMakeFiles/HW1.dir/clean
-.PHONY : CMakeFiles/HW1.dir/clean
+.PHONY : HW2
 
 # clean rule for target.
-clean: CMakeFiles/HW1.dir/clean
+CMakeFiles/HW2.dir/clean:
+	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/clean
+.PHONY : CMakeFiles/HW2.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/HW2.dir/clean
 
 .PHONY : clean
 
