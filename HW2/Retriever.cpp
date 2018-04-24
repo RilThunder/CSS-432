@@ -52,13 +52,14 @@ int setUpSocket(char *const *argumentValues) {
     struct addrinfo hints; //define what the getaddrinfo going to do. Define IPV4 or v6, what kind of connection,..etc
     struct addrinfo *serverInfo; // getaddrinfo will put the results in here. And we can go though this to get the address
     memset(&hints , 0 , sizeof(hints));
-    hints.ai_family = AF_UNSPEC; // either IPv4 or IPv6
+    hints.ai_family = AF_INET; // either IPv4 or IPv6
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
     serverName = argumentValues[ 1 ];
     fileName = argumentValues[ 2 ];
     // use default port 80 for http
-    int addrInfoStatus = getaddrinfo(serverName , to_string(80).c_str() , &hints , &serverInfo);
+    // Change this back after testing
+    int addrInfoStatus = getaddrinfo(serverName , to_string(1648).c_str() , &hints , &serverInfo);
     if ( addrInfoStatus != 0 )
     {
         cout << "Unable to connect";
@@ -164,3 +165,4 @@ int main(int argumentNumber , char *argumentValues[])
 }
 
 /* Ask about ip address vs string address and https get method */
+/* Also ask about the file not found custom page ? */

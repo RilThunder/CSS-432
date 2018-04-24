@@ -54,6 +54,10 @@ string parseHeaderInfo(int socketFileDescriptor)
     }
     return responseHeader;
 }
+
+
+
+
 /**
  * This method is used to process the GET Request from client
  * @param threadData that data that the thread is gonna use (client file descriptor and id)
@@ -63,7 +67,7 @@ void *processGETRequest(void *threadData) {
     struct thread_data *data;
     data = (struct thread_data *) threadData;
     string filePath="";
-    bool isGET = true;
+    bool isGET = false;
     while (true)
     {
         // Read a newline-terminated string:
@@ -74,42 +78,81 @@ void *processGETRequest(void *threadData) {
         if (header.substr(0,3) == "GET") {
             filePath=header.substr(4);
             cout<<"GOT URL!  "<< filePath <<"\n";
-        }
-        else
-        {   isGET = false;
-            cout << "Only support GET request";
+            isGET = true;
             break;
         }
 
-    }
 
+    }
+    string statusCode;
+    string fileContent = "";
     /* Send the client back a web page. */
     if (isGET)
     {
-        int fileDescriptor;
-        fileDescriptor = open(filePath, O_RDONLY );
-        string content = "";
-        fstream fileStream;
-        fileStream.open(filePath,fstream::out);
-        if (fileStream.fail()) {
-
+        // Trying to access a file that is above the directory the server is running
+        if ( filePath.substr(0 , 2) == ".." )
+        {
+            fileContent = "Does not allow";
+            statusCode = FORBIDDEN_RESPONSE;
         }
-        fileStream >> content;
-        string page_length = to_string(content.size());
+        else
+        {
 
+            FILE *file = fopen(filePath.c_str() , "r");
+            // Could not open the file because either it doesn't exist to read or do not have permsiion
+            if ( file == nullptr )
+            {
+                cout << "Unable to open the file for reading";
+                if ( errno == EACCES )
+                {
+                    cout << "Does not have sufficient access for the file";
+                    fileContent = "No permission";
+                    statusCode = UNAUTHORIZED_RESPONSE;
+                }
+                else
+                {
+                    fileContent = "Does not exist";
+                    statusCode = DOES_NOT_EXIST_RESPONSE;
+                }
+            }
+            else
+            {
+
+                while ( true )
+                {
+                    fileContent += fgetc(file);
+                    if ( feof(file))
+                    {
+                        break;
+                    }
+                }
+                fclose(file);
+                statusCode = OK_RESPONSE;
+            }
+        }
+
+
+
+    }
+    else {
+        // Could not recognize the get request
+        fileContent = "Bad request";
+        statusCode = BAD_REQUEST_RESPONSE;
+    }
+    // Fix the HTTP 200 OK response
+    // Find out why the file could not be opened
+
+        string pageLength = to_string(fileContent.size());
         string response =
                 "HTTP/1.1 200 OK\r\n"  // status code, e.g., 404 not found
-                "Content-Length: " + page_length + "\r\n" // bytes in message
+                "Content-Length: " + pageLength + "\r\n" // bytes in message
                                                    "Content-Type: text/plain\r\n" // MIME type
                                                    "\r\n" // blank line == end of HTTP request
-                + content;
+                + fileContent;
 
         send(data->clientFileDescriptor , &response[ 0 ] , response.size() , 0);
+        close(data->clientFileDescriptor);
     }
-    close(data->clientFileDescriptor);
-
-}
-
 
 /**
  *
@@ -125,10 +168,11 @@ int main(int argumentNumber, char *argumentValues[]) {
     struct addrinfo hints; // define how the server will be configure
     struct addrinfo *serverInfo; // used to store all the connections that the server can use
     memset(&hints , 0 , sizeof(hints));
-    hints.ai_family = AF_UNSPEC; // IPv4 or v6
+    hints.ai_family = AF_INET; // IPv4 or v6
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
-    int addressInfoStatus = getaddrinfo(nullptr , to_string(8080).c_str() , &hints , &serverInfo);
+    // CHANGE THIS BACK AFTER TESTING 1646 to 8080
+    int addressInfoStatus = getaddrinfo(nullptr , to_string(1648).c_str() , &hints , &serverInfo);
     if ( addressInfoStatus != 0 )
     {
         cout << "Unable to connect";
@@ -149,6 +193,8 @@ int main(int argumentNumber, char *argumentValues[]) {
             cout << "Invalid one socket file descriptor detected. Looking for next one";
             continue;
         }
+        int optionValue = 1;
+        setsockopt(socketFileDescriptor,SOL_SOCKET,SO_REUSEADDR, &optionValue, sizeof(optionValue)  );
         serverBindResult = bind(socketFileDescriptor , possibleConnection->ai_addr , possibleConnection->ai_addrlen);
         if ( serverBindResult == -1 )
         {
@@ -164,8 +210,7 @@ int main(int argumentNumber, char *argumentValues[]) {
         return -1;
     }
     freeaddrinfo(serverInfo);
-    int optionValue = 1;
-    setsockopt(socketFileDescriptor,SOL_SOCKET,SO_REUSEADDR, &optionValue, sizeof(optionValue)  );
+
     int listenUsingSocketResult = listen(socketFileDescriptor , CONNECTION_REQUEST_SIZE);
     if ( listenUsingSocketResult != 0 )
     {
