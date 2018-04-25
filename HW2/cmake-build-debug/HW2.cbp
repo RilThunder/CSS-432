@@ -90,6 +90,9 @@
 		<Unit filename="/home/thuan/CSS-432/HW2/Server.cpp">
 			<Option target="HW2"/>
 		</Unit>
+		<Unit filename="/home/thuan/CSS-432/HW2/test.cpp">
+			<Option target="HW2"/>
+		</Unit>
 		<Unit filename="/home/thuan/CSS-432/HW2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

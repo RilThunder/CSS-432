@@ -1,3 +1,1 @@
-<html><head><title>Object moved</title></head><body>
-<h2>Object moved to <a href="https://www.uwb.edu/index.html">here</a>.</h2>
-</body></html>
+<html><head><title>Document Moved</title></head><body><h1>Document Moved</h1><p>The document has moved <a href="http://www.uwb.edu/index.html">here</a>.</p></body></html>

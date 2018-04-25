@@ -12,7 +12,7 @@
 
 using namespace std;
 
-const string FILENAME = "content.txt";
+string FILENAME = "content.txt";
 
 
 char *serverName;
@@ -48,7 +48,8 @@ string parseHeaderInfo(int socketFileDescriptor)
  * @param argumentValues The values that contain the server name and file name from the command line
  * @return -1 for failure. Other number is the socket number
  */
-int setUpSocket(char *const *argumentValues) {
+int setUpSocket(char *const *argumentValues)
+{
     struct addrinfo hints; //define what the getaddrinfo going to do. Define IPV4 or v6, what kind of connection,..etc
     struct addrinfo *serverInfo; // getaddrinfo will put the results in here. And we can go though this to get the address
     memset(&hints , 0 , sizeof(hints));
@@ -59,7 +60,7 @@ int setUpSocket(char *const *argumentValues) {
     fileName = argumentValues[ 2 ];
     // use default port 80 for http
     // Change this back after testing
-    int addrInfoStatus = getaddrinfo(serverName , to_string(1648).c_str() , &hints , &serverInfo);
+    int addrInfoStatus = getaddrinfo(serverName , argumentValues[ 3 ] , &hints , &serverInfo);
     if ( addrInfoStatus != 0 )
     {
         cout << "Unable to connect";
@@ -112,8 +113,8 @@ int processGetRequest(int socketFileDescriptor)
                             "\r\n"); // a get request is ended with a "\r\n\r\n"
     cout << "This request was made : " << endl;
     cout << request << endl;
-    int result = send(socketFileDescriptor , request.c_str() , strlen(request.c_str()) , 0);
-    if ( result < 0 )
+    int sendResult = send(socketFileDescriptor , request.c_str() , strlen(request.c_str()) , 0);
+    if ( sendResult <= 0 )
     {
         cout << "Unable to send the request";
         return -1;
@@ -125,18 +126,19 @@ int processGetRequest(int socketFileDescriptor)
         if ( responseHeader == "" ) break; // This can only happen when double \r\n\r\n that represent the end of header
         cout << responseHeader << endl;
         if ( responseHeader.substr(0 , 15) == "Content-Length:" )
+        {
             length = atoi(responseHeader.substr(
-                    16).c_str()); // Parse the number of byte that will be in the body of the message
+                    16 , responseHeader.length()).c_str()); // Parse the number of byte that will be in the body of the message
+        }
     }
     cout << "printing out the body of the response and writing the content to " + FILENAME << endl;
-    char buffer[length];
-    recv(socketFileDescriptor , &buffer , length , 0);
     ofstream outputFile;
     outputFile.open(FILENAME);
+    char buffer[length];
+    recv(socketFileDescriptor , &buffer , length , 0);
     for ( int i = 0; i < length; i++ )
     {
-        cout << buffer[ i ];
-        outputFile << buffer[i];
+        outputFile << buffer[ i ];
     }
     close(socketFileDescriptor);
     outputFile.close();
@@ -146,23 +148,21 @@ int processGetRequest(int socketFileDescriptor)
 
 /**
  * Main entry point of the program
- * @param argumentNumber The number of argument. Expected 2
- * @param argumentValues The values from the command line. Server name and file path
+ * @param argumentNumber The number of argument. Expected 3
+ * @param argumentValues The values from the command line. Server name, file path and port number
  * @return -1 for failure and 0 for success
  */
 int main(int argumentNumber , char *argumentValues[])
 {
-    if ( argumentNumber != 3 )
+    if ( argumentNumber != 4 )
     {
         cout << "Incorrect number of argument provided. Expected to receive server address and web page ";
     }
     int socketFileDescriptor = setUpSocket(argumentValues);
-    if (socketFileDescriptor == -1) {
+    if ( socketFileDescriptor == -1 )
+    {
         cout << "Unable to create a socket";
         return -1;
     }
-     return processGetRequest(socketFileDescriptor);
+    return processGetRequest(socketFileDescriptor);
 }
-
-/* Ask about ip address vs string address and https get method */
-/* Also ask about the file not found custom page ? */

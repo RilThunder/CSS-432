@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/thuan/CSS-432/HW2/Retriever.cpp" "/home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles/HW2.dir/Retriever.cpp.o"
   "/home/thuan/CSS-432/HW2/Server.cpp" "/home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles/HW2.dir/Server.cpp.o"
+  "/home/thuan/CSS-432/HW2/test.cpp" "/home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles/HW2.dir/test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

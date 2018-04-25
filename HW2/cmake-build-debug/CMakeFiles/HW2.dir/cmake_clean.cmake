@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/HW2.dir/Retriever.cpp.o"
   "CMakeFiles/HW2.dir/Server.cpp.o"
+  "CMakeFiles/HW2.dir/test.cpp.o"
   "HW2.pdb"
   "HW2"
 )

@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/HW2.dir/Retriever.cpp.o CMakeFiles/HW2.dir/Server.cpp.o  -o HW2 
+/usr/bin/c++  -g   CMakeFiles/HW2.dir/Retriever.cpp.o CMakeFiles/HW2.dir/Server.cpp.o CMakeFiles/HW2.dir/test.cpp.o  -o HW2 
