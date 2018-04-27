@@ -1,1 +1,0 @@
-<html><head><title>Document Moved</title></head><body><h1>Document Moved</h1><p>The document has moved <a href="http://www.uwb.edu/index.html">here</a>.</p></body></html>

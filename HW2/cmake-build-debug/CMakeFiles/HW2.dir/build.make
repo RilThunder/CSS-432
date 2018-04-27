@@ -34,10 +34,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.84/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.84/bin/cmake/bin/cmake -E remove -f
+RM = /home/thuan/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -57,103 +57,7 @@ include CMakeFiles/HW2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/HW2.dir/flags.make
 
-CMakeFiles/HW2.dir/Retriever.cpp.o: CMakeFiles/HW2.dir/flags.make
-CMakeFiles/HW2.dir/Retriever.cpp.o: ../Retriever.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/HW2.dir/Retriever.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HW2.dir/Retriever.cpp.o -c /home/thuan/CSS-432/HW2/Retriever.cpp
-
-CMakeFiles/HW2.dir/Retriever.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HW2.dir/Retriever.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/thuan/CSS-432/HW2/Retriever.cpp > CMakeFiles/HW2.dir/Retriever.cpp.i
-
-CMakeFiles/HW2.dir/Retriever.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HW2.dir/Retriever.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/thuan/CSS-432/HW2/Retriever.cpp -o CMakeFiles/HW2.dir/Retriever.cpp.s
-
-CMakeFiles/HW2.dir/Retriever.cpp.o.requires:
-
-.PHONY : CMakeFiles/HW2.dir/Retriever.cpp.o.requires
-
-CMakeFiles/HW2.dir/Retriever.cpp.o.provides: CMakeFiles/HW2.dir/Retriever.cpp.o.requires
-	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/Retriever.cpp.o.provides.build
-.PHONY : CMakeFiles/HW2.dir/Retriever.cpp.o.provides
-
-CMakeFiles/HW2.dir/Retriever.cpp.o.provides.build: CMakeFiles/HW2.dir/Retriever.cpp.o
-
-
-CMakeFiles/HW2.dir/Server.cpp.o: CMakeFiles/HW2.dir/flags.make
-CMakeFiles/HW2.dir/Server.cpp.o: ../Server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/HW2.dir/Server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HW2.dir/Server.cpp.o -c /home/thuan/CSS-432/HW2/Server.cpp
-
-CMakeFiles/HW2.dir/Server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HW2.dir/Server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/thuan/CSS-432/HW2/Server.cpp > CMakeFiles/HW2.dir/Server.cpp.i
-
-CMakeFiles/HW2.dir/Server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HW2.dir/Server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/thuan/CSS-432/HW2/Server.cpp -o CMakeFiles/HW2.dir/Server.cpp.s
-
-CMakeFiles/HW2.dir/Server.cpp.o.requires:
-
-.PHONY : CMakeFiles/HW2.dir/Server.cpp.o.requires
-
-CMakeFiles/HW2.dir/Server.cpp.o.provides: CMakeFiles/HW2.dir/Server.cpp.o.requires
-	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/Server.cpp.o.provides.build
-.PHONY : CMakeFiles/HW2.dir/Server.cpp.o.provides
-
-CMakeFiles/HW2.dir/Server.cpp.o.provides.build: CMakeFiles/HW2.dir/Server.cpp.o
-
-
-CMakeFiles/HW2.dir/test.cpp.o: CMakeFiles/HW2.dir/flags.make
-CMakeFiles/HW2.dir/test.cpp.o: ../test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/HW2.dir/test.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HW2.dir/test.cpp.o -c /home/thuan/CSS-432/HW2/test.cpp
-
-CMakeFiles/HW2.dir/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HW2.dir/test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/thuan/CSS-432/HW2/test.cpp > CMakeFiles/HW2.dir/test.cpp.i
-
-CMakeFiles/HW2.dir/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HW2.dir/test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/thuan/CSS-432/HW2/test.cpp -o CMakeFiles/HW2.dir/test.cpp.s
-
-CMakeFiles/HW2.dir/test.cpp.o.requires:
-
-.PHONY : CMakeFiles/HW2.dir/test.cpp.o.requires
-
-CMakeFiles/HW2.dir/test.cpp.o.provides: CMakeFiles/HW2.dir/test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/HW2.dir/build.make CMakeFiles/HW2.dir/test.cpp.o.provides.build
-.PHONY : CMakeFiles/HW2.dir/test.cpp.o.provides
-
-CMakeFiles/HW2.dir/test.cpp.o.provides.build: CMakeFiles/HW2.dir/test.cpp.o
-
-
-# Object files for target HW2
-HW2_OBJECTS = \
-"CMakeFiles/HW2.dir/Retriever.cpp.o" \
-"CMakeFiles/HW2.dir/Server.cpp.o" \
-"CMakeFiles/HW2.dir/test.cpp.o"
-
-# External object files for target HW2
-HW2_EXTERNAL_OBJECTS =
-
-HW2: CMakeFiles/HW2.dir/Retriever.cpp.o
-HW2: CMakeFiles/HW2.dir/Server.cpp.o
-HW2: CMakeFiles/HW2.dir/test.cpp.o
-HW2: CMakeFiles/HW2.dir/build.make
-HW2: CMakeFiles/HW2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/thuan/CSS-432/HW2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable HW2"
-	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/HW2.dir/link.txt --verbose=$(VERBOSE)
-
-# Rule to build all files generated by this target.
-CMakeFiles/HW2.dir/build: HW2
-
-.PHONY : CMakeFiles/HW2.dir/build
-
-CMakeFiles/HW2.dir/requires: CMakeFiles/HW2.dir/Retriever.cpp.o.requires
-CMakeFiles/HW2.dir/requires: CMakeFiles/HW2.dir/Server.cpp.o.requires
-CMakeFiles/HW2.dir/requires: CMakeFiles/HW2.dir/test.cpp.o.requires
+CMakeFiles/HW2.dir/requires:
 
 .PHONY : CMakeFiles/HW2.dir/requires
 

@@ -107,8 +107,8 @@ int setUpSocket(char *const *argumentValues)
  */
 int processGetRequest(int socketFileDescriptor)
 {
-    string request = string("GET " + string(fileName) + " HTTP/1.1\r\n" +
-                            "Host: " + string(serverName) + "\r\n" +
+    string request = string("POST " + string(fileName) + " HTTP/1.1\r\n" +
+                            "Hos: " + string(serverName) + "\r\n" +
                             "\r\n"); // a get request is ended with a "\r\n\r\n"
     cout << "This request was made : " << endl;
     cout << request << endl;
