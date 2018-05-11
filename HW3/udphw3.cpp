@@ -1,10 +1,12 @@
-//
-// Created by Thuan on 5/5/2018.
-//
+/**
+ * @author Thuan Tran
+ * CSS 432: HW3 Sliding Window
+ * @date May 10th, 2018
+ */
 
 #include "udphw3.h"
 
-#define TIME_OUT 1500
+#define TIME_OUT 150
 
 
 /**
@@ -71,6 +73,11 @@ void udphw3::serverReliable(UdpSocket &sock, const int max, int *message) {
 }
 
 /**
+ * IMPORTANT: I will explain this in more details within the report
+ * This algorithm is a sliding window algorithm that will receive a cumulative ack from the server
+ * Because of the nature of the server, there is a very rare chance that it will need to retransmit
+ * This is not selective repeat but instead sliding window
+ *
  * Client side implementation for sliding window. It will keep sending message until it reach a a window size
  * After that, It will start to receive the package and check the ack number to slide the window
  * @param sock The socket to send data to and receive from
@@ -96,25 +103,20 @@ int udphw3::clientSlidingWindow(UdpSocket &sock, const int max, int *message, in
             // Check within the duration of the timer to see if it receive
             // any ack
             while (true) {
-                bool canSendNextOne = false;
                 // keep receiving data if there's data available
-                while (sock.pollRecvFrom() > 0) {
+                if (sock.pollRecvFrom() > 0) {
                     sock.recvFrom((char *) message, MSGSIZE);
                     if (message[0] == recentAck) {
                         recentAck++; // Increment the recent in order message ack
                         numberOfUnack--;
-                        canSendNextOne = true;
                         break;
                     }
                 }
-                if (canSendNextOne) {
-                    break; // Break to outer for loop to keep sending
-                }
                 // No response meaning time out and no data
                 if (timer.lap() > TIME_OUT && numberOfUnack == windowSize) {
+                    retransmission = retransmission + (i + windowSize - recentAck);
                     i = recentAck;
                     numberOfUnack = 0; // Reset everything. Will start restransmitting at the lowest sequence number
-                    retransmission = retransmission + (windowSize - recentAck);
                     continue;
                 }
             }
@@ -125,6 +127,11 @@ int udphw3::clientSlidingWindow(UdpSocket &sock, const int max, int *message, in
 }
 
 /**
+ * IMPORTANT: I will explain this in more details within the report
+ * The server will only send the ack with the minimum sequence number for every package it receive
+ * It will only accept in order package to increment the sequence number
+ * It does not follow selective repeat algorithm and professor Peng have verified this
+ *
  * Server side implementation for case 3: sliding window
  * @param sock the udp socket to receive data from
  * @param max the maximum number of time (messages) to receive
