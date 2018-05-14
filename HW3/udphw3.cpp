@@ -1,12 +1,14 @@
 /**
  * @author Thuan Tran
- * CSS 432: HW3 Sliding Window
  * @date May 10th, 2018
+ * CSS 432: HW3 Sliding Window
+ * Implementation file for the class that will implement the stop and wait algorithm and the sliding window
+ * For both client and server
  */
 
 #include "udphw3.h"
 
-#define TIME_OUT 150
+#define TIME_OUT 300 // Define a time out for 300 usec
 
 
 /**
@@ -49,7 +51,6 @@ int udphw3::clientStopWait(UdpSocket &sock, const int max, int *message) {
         }
     }
     return retransmission;
-
 }
 
 /**
@@ -62,11 +63,13 @@ int udphw3::clientStopWait(UdpSocket &sock, const int max, int *message) {
 void udphw3::serverReliable(UdpSocket &sock, const int max, int *message) {
     for (int i = 0; i < max; i++) {
         while (true) {
-            sock.recvFrom((char *) message, MSGSIZE);
-            if (message[0] == i) { // Only send ack if the server is waiting for this message
-                sock.ackTo((char *) &i, sizeof(i));
-                // Can only break the loop and go forward if it match
-                break;
+            if (sock.pollRecvFrom() > 0) {
+                sock.recvFrom((char *) message, MSGSIZE);
+                if (message[0] == i) { // Only send ack if the server is waiting for this message
+                    sock.ackTo((char *) &i, sizeof(i));
+                    // Can only break the loop and go forward if it match
+                    break;
+                }
             }
         }
     }
@@ -75,7 +78,6 @@ void udphw3::serverReliable(UdpSocket &sock, const int max, int *message) {
 /**
  * IMPORTANT: I will explain this in more details within the report
  * This algorithm is a sliding window algorithm that will receive a cumulative ack from the server
- * Because of the nature of the server, there is a very rare chance that it will need to retransmit
  * This is not selective repeat but instead sliding window
  *
  * Client side implementation for sliding window. It will keep sending message until it reach a a window size
@@ -122,7 +124,6 @@ int udphw3::clientSlidingWindow(UdpSocket &sock, const int max, int *message, in
             }
         }
     }
-
     return retransmission;
 }
 
@@ -148,27 +149,9 @@ void udphw3::serverEarlyRetrans(UdpSocket &sock, const int max, int *message, in
                 sock.ackTo((char *) &i, sizeof(i));
                 if (message[0] == i) {
                     break; // Can advance and receive the next data
+                    // i will be incremented to represent next ack
                 }
             }
         }
     }
 }
-
-
-
-
-
-
-/* Ask about window side for case 4
- * Send the ack number for last received message in order
- * If received message out of order, still save it in an array but send the ack of recent order
- * For case 4, packets are dropped N% of time where N is 0 to 10 for window size 1 and window size 30
- * So for each N of each window size. N = 0 for window 1, N =1 for window 2
- * drop N% of the time
- * Ask about how window size have effect on ServerEralyRetrans. For case 4, window 1 and window 30 won't have difference on server ?
- * Since they just ack sequentially
- * Since the server now only ack message that are in order. Did not match the algorithm signature ?
- */
-
-
-

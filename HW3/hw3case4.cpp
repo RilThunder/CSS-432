@@ -1,12 +1,22 @@
+/**
+ * Main class for testing case 4
+ * Similar like hw3.cpp but with the new case of case 4
+ * However, this class should only invoke case 4 only since case 3 was modified
+ * @author Thuan Tran
+ * @date May 11th, 2018
+ */
+
 #include <iostream>
 #include "UdpSocket.h"
 #include "Timer.h"
 #include "udphw3.h"
 #include <stdlib.h>
+#include "udphw3case4.h"
+
 
 using namespace std;
 
-#define PORT 1646       // my UDP port
+#define PORT 1646       // my UDP port. Should change this if cannot bind to local address
 #define MAX 20000        // times of message transfer
 #define MAXWIN 30        // the maximum window size
 #define LOOP 10          // loop in test 4 and 5
@@ -47,8 +57,9 @@ int clientStopWait(UdpSocket &sock, const int max, int message[]) {
 
 int clientSlidingWindow(UdpSocket &sock, const int max, int message[],
                         int windowSize) {
-    udphw3 hw3;
-    return hw3.clientSlidingWindow(sock, max, message, windowSize);
+    udphw3case4 hw3; // The same as udphw3 but keep it like this to match with
+                     // requirements
+    return hw3.clientSlidingWindow(sock,max,message,windowSize);
 }
 
 
@@ -60,27 +71,9 @@ void serverReliable(UdpSocket &sock, const int max, int message[]) {
 
 void serverEarlyRetrans(UdpSocket &sock, const int max, int message[],
                         int windowSize, int dropRate) {
+    udphw3case4 hw3;
+    hw3.serverEarlyRetrans(sock,max,message,windowSize,dropRate);
 
-
-    // Will use the index i as the expected number within the message
-    // Can only advance the loop if the data is received in correct order
-
-    for (int i = 0; i < max; i++) {
-        while (true) {
-            if (sock.pollRecvFrom() > 0) {
-                int percentage = rand() % 101; // Generate a random number from 0 -100;
-                if (percentage < dropRate) {
-                    continue;
-                }
-                sock.recvFrom((char *) message, MSGSIZE);
-                sock.ackTo((char *) &i, sizeof(i));
-                if (message[0] == i) {
-                    break; // Can advance and receive the next data
-                }
-            }
-
-        }
-    }
 }
 
 

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#define PORT 1646       // my UDP port
+#define PORT 1647       // my UDP port. Should change this if cannot bind to local address
 #define MAX 20000        // times of message transfer
 #define MAXWIN 30        // the maximum window size
 #define LOOP 10          // loop in test 4 and 5
